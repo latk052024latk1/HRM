@@ -1,0 +1,54 @@
+{% extends 'driverdocs/base.html' %}
+
+
+
+        {% block header %}
+<center><h1 style="padding-top:30px; padding-bottom:30px; text-align: center"> მძღოლები </h1></center>
+    {% endblock %}
+
+
+    <center>
+
+        {% block table %}
+
+
+
+<table style="width:75%; font-size: 25px; margin: auto;">
+    <thead>
+    <tr style="text-align:center;">
+        <th style="text-align:center; padding: 30px">ID</th>
+        <th style="text-align:center;padding: 30px">სახელი</th>
+        <th style="text-align:center;padding: 30px">გვარი</th>
+        <th style="text-align:center;padding: 30px">დაბადების თარიღი</th>
+
+    </tr>
+    </thead>
+    <tbody>
+{% for driver in object_list %}
+
+
+    <tr>
+
+
+        <td style="text-align:center;padding: 30px">{{ driver.dr_personal}}</td>
+
+        <td style="text-align:center;padding: 30px">{{ driver.dr_name}}</td>
+        <td style="text-align:center;padding: 30px">{{ driver.dr_surname}}</td>
+        <td style="text-align:center;padding: 30px">{{ driver.birth_date}}</td>
+<td><button style="border-radius: 22px; background-color:#FFFFCC;"><a href="{% url 'driverdocs:dr_view' driver.pk %}" style="color:darkgreen;">ნახვა</a></button></td>
+
+    </tr>
+{% endfor %}
+    </tbody>
+</table>
+    {% endblock %}
+
+
+
+
+
+
+
+
+
+</center>

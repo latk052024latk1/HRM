@@ -1,0 +1,40 @@
+{% extends 'cardocs/base.html' %}
+<body>
+
+    {% block header%}
+    <center> <h1 style="padding-bottom:30px; padding-top:30px"> ტრაილერის დოკუმენტის განახლება</h1> </center>
+    {% endblock %}
+
+{% block update_trailerdocs %}
+{% if messages %}
+
+{% for message in messages %}
+    <li>{% if message.tags %} class="{{ message.tags }}"{% endif %}{{ message }}</li>
+    {% endfor %}
+{% endif %}
+<center>
+<div> {{ certaind.trailer_reg_number }}  </div>
+<div> {{ oldd.trailer_doc_category }} </div></center>
+<center>
+<form method="post" id="f" enctype="multipart/form-data">
+    {% csrf_token %}
+
+
+
+    {% for item in form %}
+            <div class="fieldWrapper">
+                {{ item }}
+                {% if item.help_text %}
+                    {{ item.help_text|safe }}
+                {% endif %}
+            </div>
+            <br>
+        {% endfor %}
+    <input type="submit" value="დასტური" />
+
+
+
+</form></center>
+{% endblock %}
+</body>
+</html>

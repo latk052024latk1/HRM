@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+
+{% extends 'business/base.html' %}
+
+{% block a %}
+<html lang="en">
+<head>
+    <style>
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+
+form{
+padding:30px;
+margin:10px 0;    
+text-align:center;
+border: 4px darkgray groove;
+width:500px;
+box-shadow:  5px 5px  black;
+border-radius:10% 10% 5% 5%;
+}
+.form-control{
+
+  text-align:center;
+}
+.fieldWrapper{
+    display:flex;
+  flex-direction: column;
+  width: 100%; height:100%;
+  justify-content: center;
+  align-items: center;
+}
+
+input[type=submit] {
+  background-color: #FFFFCC;
+  border-radius: 8px;
+  color:darkgreen;
+}
+
+table {
+width:100%;
+text-align: center;
+color:black;
+box-shadow: 2px 2px 21px 5px lightgray;
+margin-left: auto;
+  margin-right: auto;
+}
+
+thead{
+border: none;
+background-color: rgba(240, 240, 240, 0.35);
+}
+
+
+tbody {
+border: none;
+}
+
+th {
+
+    text-align:center;
+    padding: 30px;
+    border: 1px  black solid;
+
+}
+
+tr {
+
+    text-align:center;
+    padding: 30px;
+    border: 1px  black solid;
+
+}
+
+td {
+    font-weight: bold;
+    text-align:center;
+    padding: 30px;
+    border: 1px black solid;
+    color: black;
+}
+
+
+h2{
+text-align: center;
+}
+
+.div-docs{
+margin:30px;
+
+}
+.div-actions{
+margin:15px;
+}
+.section-vse{
+width:1040px;
+margin:0 auto;
+height:150px;
+}
+.section-data{
+width:500px;
+margin:0 auto;
+}
+
+
+.topnav {
+  overflow: hidden;
+  background-color: #333;
+}
+
+.topnav a {
+  float: left;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+.topnav a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+.topnav a.active {
+  background-color: #04AA6D;
+  color: white;
+}
+.span-right{
+float:right;
+padding-right: 10px;
+}
+
+tr:hover,td:hover{
+    background-color: rgba(140,0,0,0.4);
+}
+
+
+</style>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+
+
+
+
+<body style="text-align:center">
+
+
+
+
+<section class="section-vse" style="">
+
+    <h1 style="padding-top:30px; padding-bottom: 30px;">მომხმარებლის გვერდი</h1>
+
+   <center><center>
+<form method="POST">
+     {% csrf_token %}
+<label>მომხმარებელი</label>
+    {% for item in form %}
+            <div class="fieldWrapper">
+                {{ item }}
+                
+            </div>
+            <br>
+        {% endfor %}
+
+<hr>
+
+    <input type="submit" value="დასტური" />
+</form>
+</center> <script>/*<section class="section-sleva" style="width: 25%; height:70%; background-color:">
+        <img src="{{ object.get_photo_url }}" style="width:100%; height:230%; float:center">
+    </section></center><br><br><br>*/</script>
+
+<section class="section-data" style='background-color:#faba35;width:100%; height:180%;margin-bottom:120px; float:top;'>
+    <table style="width:100%; height:100%; padding-bottom:120px;">
+    <tbody>
+
+    <tr><td style="padding:15px"><b>მომხმარებლის სახელი:</b></td> <td>{{object.username}}</td></tr>
+    <tr><td style="padding:15px"><b>ID:</b></td> <td>{{object.id}}</td></tr>
+    <tr><td style="padding:15px"><b>ელ-ფოსტა:</b></td> <td>{{ object.email }}</td></tr>
+    <tr><td style="padding:15px"><b>ტელეფონის ნომერი:</b></td> <td>{{object.phone}}</td></tr>
+    <tr><td style="padding:15px"><b>ბოლო შესვლა ანგარიშში:</b></td> <td>{{object.last_login}}</td></tr>
+
+
+    </tbody>
+</table>
+</section>
+<hr>
+
+<h2>გაფრთხილებები</h2>
+<hr>
+<table style="width:1040px;
+margin:0 auto;
+height:150px;">
+
+    <thead>
+    <tr style="text-align:center;">
+        <th style="text-align:center;padding: 30px">მძღოლი</th>
+        <th style="text-align:center;padding: 30px">საბუთის ნომერი</th>
+        <th style="text-align:center;padding: 30px">კატეგორია</th>
+        <th style="text-align:center;padding: 30px">გაცემის თარიღი</th>
+        <th style="text-align:center;padding: 30px">მოქმედების ვადა</th>
+        <th style="text-align:center;padding: 30px">Update</th>
+    </tr></thead>
+
+
+<tbody>
+    {% for d in doc %}
+    <tr style="background-color: rgba(140,0,0,0.55); color:black;">
+
+
+        <td style="text-align:center;padding: 30px">{{ d.dr_id.dr_name }} {{ d.dr_id.dr_surname }} </td>
+        <td style="text-align:center;padding: 30px">{{ d.doc_number}}</td>
+        <td style="text-align:center;padding: 30px">{{ d.doc_category}}</td>
+        <td style="text-align:center;padding: 30px">{{ d.display_given_day}}</td>
+        <td style="text-align:center;padding: 30px">{{ d.display_day}}</td>
+        <td style="text-align:center;padding: 30px;"><a style="color:green" href=" {% url 'driverdocs:docs_upd' person_id=d.dr_id_id doc_category=d.doc_category_id %}">A</a></td>
+    </tr>
+    {% endfor %}
+</tbody>
+
+
+
+
+
+    <thead>
+    <tr style="text-align:center; padding-top:20px">
+        <th style="text-align:center;padding: 30px">მაქნანა</th>
+        <th style="text-align:center;padding: 30px">დოკუმენტის ნომერი</th>
+        <th style="text-align:center;padding: 30px">კატეგორია</th>
+        <th style="text-align:center;padding: 30px">გაცემის თარიღი</th>
+        <th style="text-align:center;padding: 30px">მოქმედების ვადა</th>
+        <th style="text-align:center;padding: 30px">Update</th>
+    </tr></thead>
+
+
+<tbody>
+    {% for dcar in doccars %}
+    <tr style="background-color: rgba(140,0,0,0.55); color:black;">
+
+
+        <td style="text-align:center;padding: 30px">{{ dcar.car.car_reg_number }}</td>
+        <td style="text-align:center;padding: 30px">{{ dcar.car_doc_number}}</td>
+        <td style="text-align:center;padding: 30px">{{ dcar.car_doc_category}}</td>
+        <td style="text-align:center;padding: 30px">{{ dcar.display_given_day }} </td>
+        <td style="text-align:center;padding: 30px">{{ dcar.display_expire_day}}</td>
+        <td style="text-align:center;padding: 30px"><a style="background-color: rgba(140,0,0,0.55); color:black;" href=" {% url 'cardocs:docs_upd' car_id=dcar.car_id car_doc_category=dcar.car_doc_category_id %}">A</a></td>
+    </tr>
+    {% endfor %}
+</tbody>
+
+
+
+
+</table>
+
+<hr>
+    <h2>Actions</h2>
+<table class="table">
+<tbody>
+    {% for a in actions %}
+    <tr class="info" style="border:2px black dotted;">
+        <td><div class="div-actions"><b>{{ a.action }}</b> </div></td> <td><span class="span-right"><b>{{ a.display_affected }}</b></span>
+            </td>
+    </tr>
+    {% endfor %}
+</tbody>
+</table>
+
+</section>
+
+
+
+
+</body>
+</html>{% endblock %}

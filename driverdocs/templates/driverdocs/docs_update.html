@@ -1,0 +1,45 @@
+{% extends 'driverdocs/base.html' %}
+<body>
+
+        {% block header %}
+<center><h1 style="padding-top:30px; padding-bottom:30px; text-align: center"> დოკუმენტის განახლება </h1></center>
+    {% endblock %}
+{% block update_docs %}
+{% if messages %}
+
+{% for message in messages %}
+    <li>{% if message.tags %} class="{{ message.tags }}"{% endif %}{{ message }}</li>
+    {% endfor %}
+{% endif %}
+
+<center>
+<table>
+<tr><td style="font-size:19px"><div> {{ certaind.dr_name }}   {{ certaind.dr_surname }}</div></td> </tr>
+<tr><td style="font-size:19px"><div> {{ oldd.doc_category }} </div> </td> </tr>
+</table></center>
+
+
+
+<center>
+<form method="post" id="f" enctype="multipart/form-data">
+    {% csrf_token %}
+
+
+
+    {% for item in form %}
+            <div class="fieldWrapper">
+                {{ item }}
+                {% if item.help_text %}
+                    {{ item.help_text|safe }}
+                {% endif %}
+            </div>
+            <br>
+        {% endfor %}
+    <input type="submit" value="დასტური" />
+
+
+
+</form></center>
+{% endblock %}
+</body>
+</html>

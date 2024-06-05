@@ -1,0 +1,40 @@
+{% extends 'cardocs/base.html' %}
+<body>
+{% block header %}
+
+<h1 style="padding-top:30px; padding-bottom:30px; text-align: center"> ტრაილერის დოკუმენტის დამატება </h1>
+
+{% endblock %}
+
+
+{% block add_trailerdocs %}
+{% if messages %}
+
+{% for message in messages %}
+    <li>{% if message.tags %} class="{{ message.tags }}"{% endif %}{{ message }}</li>
+    {% endfor %}
+{% endif %}
+<center><form method="post" id="f" enctype="multipart/form-data">
+    {% csrf_token %}
+    <center><select id="dropdown" name="dropdown" class="form-control" style="width:300px; height:100%; font-size:17px; margin-bottom:30px;">
+    {% for i in c %}
+    <option value="{{ i.pk }}">{{ i.trailer_reg_number }} </option>
+    {% endfor %}
+    </select></center>
+
+
+    {% for item in form %}
+            <div class="fieldWrapper">
+                {{ item }}
+                {% if item.help_text %}
+                    {{ item.help_text|safe }}
+                {% endif %}
+            </div>
+            <br>
+        {% endfor %}
+    <input type="submit" value="დასტური" />
+
+
+
+</form></center>{% endblock %}
+</body>

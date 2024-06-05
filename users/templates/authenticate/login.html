@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+<style>
+    
+
+.fieldWrapper{
+  display:flex;
+  flex-direction: column;
+  width: 100%; height:100%;
+  justify-content: center;
+  align-items: center;
+}
+input[type=submit] {
+  background-color: #FFFFCC;
+  border-radius: 8px;
+  color:darkgreen;
+}
+form{
+padding:30px;
+margin:10px 0;    
+text-align:center;
+border: 4px darkgray groove;
+width:500px;
+box-shadow:  5px 5px  black;
+border-radius:10% 10% 5% 5%;
+}
+
+</style>
+
+</head>
+<body>
+
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+<h1 style="text-align:center; padding-top:50px; padding-bottom:20px">ავტორიზაცია</h1>
+<form method="POST" style="margin:auto; padding: auto; text-align:center">
+    {% csrf_token %}
+<div class="form-group">
+    <input type="username" name="username" id="username" placeholder="მომხმარებელი">
+  </div>
+  <div class="form-group">
+    <input type="password" name="password" id="password" placeholder="პაროლი">
+  </div>
+     <input type="hidden" name="next" value="{{ request.GET.next }}" />
+  <button type="submit" class="btn btn-primary">შესვლა</button>
+</form>
+
+</body>
+</html>

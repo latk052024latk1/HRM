@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
+</head>
+<body>
+
+<form action="{% url 'change' %}" method="POST" id="n" enctype="multipart/form-data">
+    {% csrf_token %}
+<div class="row row-space">
+
+        <div class="col-2">
+            <div class="input-group">
+                <label class="label label-success">Email</label>
+                <input class="input--style-4" type="text">
+            </div>
+        </div>
+    </div>
+
+    <input type="submit" value="Submit">
+
+</form>
+
+{{form.errors}}
+</body>
+</html>

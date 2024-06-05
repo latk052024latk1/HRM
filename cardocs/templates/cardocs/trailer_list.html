@@ -1,0 +1,46 @@
+{% extends 'cardocs/base.html' %}
+{% block header %}
+
+<center>
+    <h1 style="padding-bottom:30px; padding-top:30px">ტრაილერები</h1>
+
+    {% endblock %}</center>
+    <center>
+
+        {% block table %}
+<table style="font-size: 25px; margin: auto;">
+<thead>
+    <tr style="text-align:center;">
+    <th style="text-align:center; padding: 30px">მანქანა</th>
+
+    <th style="text-align:center; padding: 30px">სახელმწიფო ნომერი</th>
+    <th style="text-align:center; padding: 30px">VIN</th>
+    </tr>
+</thead>
+
+
+<tbody>
+    {% for trailer in object_list %}
+    <tr style="">
+    <td style="text-align:center;padding: 30px">{{ trailer.car.car_reg_number }}</td>
+    <td style="text-align:center;padding: 30px">{{ trailer.trailer_reg_number }}</td>
+    <td style="text-align:center;padding: 30px">{{ trailer.trailer_vin }}</td>
+
+        <td style="text-align:center;padding: 30px"><button style="border-radius: 22px; background-color:#FFFFCC;"><a href="{% url 'cardocs:trailer_view' trailer.pk %}">ნახვა</a></button></td>
+    </tr>
+    {% endfor %}
+</tbody>{% endblock %}
+</table>
+    
+
+
+
+
+
+
+
+
+
+
+
+</center>

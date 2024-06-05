@@ -1,0 +1,35 @@
+{% extends 'business/base.html' %}
+<body>
+{% block header %}
+<center><h1>რეგისტრაცია</h1></center>
+{% endblock %}
+
+{% block add_client %}
+{% if messages %}
+
+{% for message in messages %}
+    <li style="font-size: 19px;margin-left: 30px;"><b>{% if message.tags %} class="{{ message.tags }}"{% endif %}{{ message }}</b></li>
+    {% endfor %}
+{% endif %}
+<center>
+<form method="POST">
+     {% csrf_token %}
+<label>მომხმარებელი</label>
+    {% for item in formU %}
+            <div class="fieldWrapper">
+                {{ item }}
+                
+            </div>
+            <br>
+        {% endfor %}
+
+<hr>
+
+    <input type="submit" value="დასტური" />
+</form>
+</center>
+
+
+{% endblock %}
+</body>
+</html>

@@ -1,0 +1,57 @@
+{% extends 'cardocs/base.html' %}
+<body xmlns="http://www.w3.org/1999/html">
+        {% block header %}
+<center><h1 style="padding-top:30px; padding-bottom:30px; text-align: center"> მანქანის გვერდი </h1></center>
+    {% endblock %}
+
+    {% block car_details %}
+<center>
+
+
+
+<table style="text-align: center; font-size: 23px; box-shadow: 3px 2px 2px 2px darkgreen; opacity:100%; background-color:lightyellow">
+    <tr style="background-color:; border: 2px black dotted"><td style="background-color: ;text-align: center;">სახელმწიფო ნომერი:</td> <td style="background-color: ;text-align: center;padding-right:60px">{{object.car_reg_number}}</td></tr>
+    <tr><td style="background-color: ;padding:20px">VIN ნომერი:</td> <td style="background-color: ;text-align: center;padding-right:60px"> {{ object.car_vin }}</td></tr>
+    <tr><td style="background-color: ;padding:20px">მძღოლი:</td> <td style="background-color: ;text-align: center;padding-right:60px">{{object.driver.dr_name}} {{object.driver.dr_surname}}</td></tr>
+
+
+</table></center>
+
+<hr>
+
+<table style="width:100%;font-size: 25px;">
+    <thead>
+    <tr style="text-align:center;">
+        <th style="text-align:center; padding: 30px">დოკუმენტის ნომერი</th>
+        <th style="text-align:center;padding: 30px">კატეგორია</th>
+        <th style="text-align:center;padding: 30px">გაცემის თარიღი</th>
+        <th style="text-align:center;padding: 30px">მოქმედების ვადა</th>
+
+    </tr>
+    </thead>
+    <tbody>
+
+
+
+{% for doc in docs %}
+    {% if doc in days %}
+    <tr style="background-color: rgba(170,0,0,0.7); color:white;">
+    {% endif %}
+
+
+        <td style="text-align:center;padding: 30px">{{ doc.car_doc_number}}</td>
+        <td style="text-align:center;padding: 30px">{{ doc.car_doc_category}}</td>
+        <td style="text-align:center;padding: 30px">{{ doc.car_doc_given}}</td>
+        <td style="text-align:center;padding: 30px">{{ doc.car_doc_expire}}</td>
+
+        <td style="text-align:center;padding: 30px"><button><a href="{% url  'cardocs:car_doc_pdf' doc.pk   %}">Open</a></button></td>
+
+        <td style="text-align:center;padding: 30px"><a href=" {% url 'cardocs:docs_upd' car_id=doc.car_id car_doc_category=doc.car_doc_category_id %}">A</a></td>
+    </tr>
+{% endfor %}
+    </tbody>
+</table>
+
+{% endblock %}
+</body>
+</html>

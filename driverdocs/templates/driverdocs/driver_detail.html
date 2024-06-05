@@ -1,0 +1,130 @@
+{% extends 'driverdocs/base.html' %}
+<head>
+<style>
+    
+
+    table {
+width:100%;
+text-align: center;
+color:black;
+box-shadow: 2px 2px 21px 5px lightgray;
+margin-left: auto;
+  margin-right: auto;
+}
+
+thead{
+border: none;
+background-color: rgba(240, 240, 240, 0.35);
+}
+
+
+tbody {
+border: none;
+}
+
+th {
+
+    text-align:center;
+    padding: 30px;
+    border: 1px  black solid;
+
+}
+
+tr {
+
+    text-align:center;
+    padding: 30px;
+    border: 1px  black solid;
+
+}
+
+td {
+    font-weight: bold;
+    text-align:center;
+    padding: 30px;
+    border: 1px black solid;
+    color: black;
+}
+</style>
+    <meta charset="UTF-8">
+    <title>Title</title>
+{% block header %}
+{% endblock %}
+
+</head>
+<body>
+
+{% block table %}
+
+<center>    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<h1 style="text-align: center;">მძღოლის გვერდი</h1><br>
+<section class="section-data">
+<table style="text-align: center; font-size: 23px; width:100%; height:100%; padding-bottom:120px;">
+    <tr><td>სახელი:</td> <td>{{object.dr_name}}</td></tr>
+    <tr><td>გვარი:</td> <td>{{object.dr_surname}}</td></tr>
+    <tr><td>პირადი ნომერი:</td> <td>{{object.dr_personal}}</td></tr>
+    <tr><td>დაბადების თარიღი:</td> <td>{{object.birth_date}}</td></tr>
+    <tr><td>ელ-ფოსტა:</td> <td>{{object.dr_email}}</td></tr>
+
+</table>
+<style>
+.section-vse{
+width:1040px;
+margin:0 auto;
+height:150px;
+}
+.section-data{
+width:60%;
+margin:0 auto;
+}
+</style>
+
+</center>
+<hr>
+<center>
+    <section class="section-vse" style="">
+
+<table style="width:100%; font-size: 25px;">
+    <thead>
+    <tr style="text-align:center;">
+        <th style="text-align:center;padding: 30px;border-bottom:1px black solid">საბუთის ნომერი</th>
+        <th style="text-align:center;padding: 30px;border-bottom:1px black solid">კატეგორია</th>
+        <th style="text-align:center;padding: 30px;border-bottom:1px black solid">გაცემის თარიღი</th>
+        <th style="text-align:center;padding: 30px;border-bottom:1px black solid">მოქმედების ვადა</th>
+
+    </tr>
+    </thead>
+    <tbody>
+
+
+{% for doc in docs %}
+    {% if doc in days %}
+    <tr style="background-color: rgba(140,0,0,0.55); color:black;">
+    {% endif %}
+
+
+        <td style="text-align:center;padding: 30px;border-bottom:1px black solid">{{ doc.doc_number}}</td>
+        <td style="text-align:center;padding: 30px;border-bottom:1px black solid">{{ doc.doc_category}}</td>
+        <td style="text-align:center;padding: 30px;border-bottom:1px black solid">{{ doc.display_given_day}}</td>
+        <td style="text-align:center;padding: 30px;border-bottom:1px black solid">{{ doc.display_day}}</td>
+
+        <td style="text-align:center;padding: 30px"><button style="border-radius: 40%;"><a href="{% url  'driverdocs:doc_pdf' doc.pk   %}">Open</a></button></td>
+
+        <td style="text-align:center;padding: 30px;"><a style="color:green" href=" {% url 'driverdocs:docs_upd' person_id=doc.dr_id_id doc_category=doc.doc_category_id %}">A</a></td>
+    </tr>
+{% endfor %}
+    </tbody>
+</table></section>
+</center>
+</body>
+{% endblock %}
+
+
+
+
+

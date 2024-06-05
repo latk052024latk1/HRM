@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+
+
+
+table {
+width:100%;
+text-align: center;
+color:black;
+box-shadow: 2px 2px 21px 5px lightgray;
+margin-left: auto;
+  margin-right: auto;
+}
+
+thead{
+border: none;
+background-color: rgba(240, 240, 240, 0.35);
+}
+
+
+tbody {
+border: none;
+}
+
+th {
+
+    text-align:center;
+    padding: 30px;
+    border: 1px  black solid;
+
+}
+
+tr {
+
+    text-align:center;
+    padding: 30px;
+    border: 1px  black solid;
+
+}
+
+td {
+    font-weight: bold;
+    text-align:center;
+    padding: 30px;
+    border: 1px black solid;
+    color: black;
+}
+
+
+h2{
+text-align: center;
+}
+
+.div-docs{
+margin:30px;
+
+}
+.div-actions{
+margin:15px;
+}
+.section-vse{
+width:1040px;
+margin:0 auto;
+height:150px;
+}
+.section-data{
+width:500px;
+margin:0 auto;
+}
+
+
+.topnav {
+  overflow: hidden;
+  background-color: #333;
+}
+
+.topnav a {
+  float: left;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+.topnav a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+.topnav a.active {
+  background-color: #04AA6D;
+  color: white;
+}
+.span-right{
+float:right;
+padding-right: 10px;
+}
+
+tr:hover,td:hover{
+    background-color: rgba(140,0,0,0.4);
+}
+
+
+</style>
+
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body style="text-align:center">
+
+<section>
+
+<hr>
+<h2>გაფრხილებები</h2>
+<hr>
+<table style="width:1040px;
+margin:0 auto;
+height:150px;">
+
+    <thead>
+    <tr style="text-align:center;">
+        <th style="text-align:center;padding: 30px">მძღოლი</th>
+        <th style="text-align:center;padding: 30px">საბუთის ნომერი</th>
+        <th style="text-align:center;padding: 30px">კატეგორია</th>
+        <th style="text-align:center;padding: 30px">გაცემის თარიღი</th>
+        <th style="text-align:center;padding: 30px">მოქმედების ვადა</th>
+
+    </tr></thead>
+
+
+<tbody>
+    {% for d in doc %}
+    <tr style="background-color: rgba(140,0,0,0.55); color:black;">
+
+
+        <td style="text-align:center;padding: 30px">{{ d.dr_id.dr_name }} {{ d.dr_id.dr_surname }} </td>
+        <td style="text-align:center;padding: 30px">{{ d.doc_number}}</td>
+        <td style="text-align:center;padding: 30px">{{ d.doc_category}}</td>
+        <td style="text-align:center;padding: 30px">{{ d.display_given_day}}</td>
+        <td style="text-align:center;padding: 30px">{{ d.display_day}}</td>
+    </tr>
+    {% endfor %}
+</tbody>
+
+
+
+
+
+    <thead>
+    <tr style="text-align:center; padding-top:20px">
+        <th style="text-align:center;padding: 30px">მაქნანა</th>
+        <th style="text-align:center;padding: 30px">დოკუმენტის ნომერი</th>
+        <th style="text-align:center;padding: 30px">კატეგორია</th>
+        <th style="text-align:center;padding: 30px">გაცემის თარიღი</th>
+        <th style="text-align:center;padding: 30px">მოქმედების ვადა</th>
+
+    </tr></thead>
+
+
+<tbody>
+    {% for dcar in doccars %}
+    <tr style="background-color: rgba(140,0,0,0.55); color:black;">
+
+
+        <td style="text-align:center;padding: 30px">{{ dcar.car.car_reg_number }}</td>
+        <td style="text-align:center;padding: 30px">{{ dcar.car_doc_number}}</td>
+        <td style="text-align:center;padding: 30px">{{ dcar.car_doc_category}}</td>
+        <td style="text-align:center;padding: 30px">{{ dcar.display_given_day}}</td>
+        <td style="text-align:center;padding: 30px">{{ dcar.display_expire_day}}</td>
+    </tr>
+    {% endfor %}
+</tbody>
+
+
+
+
+</table>
+
+
+</section>
+
+
+</body>
+</html>

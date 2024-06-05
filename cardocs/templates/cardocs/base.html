@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+
+
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+}
+input[type=submit] {
+  background-color: #FFFFCC;
+  border-radius: 8px;
+  color:darkgreen;
+}
+.topnav {
+  overflow: hidden;
+  background-color: #333;
+}
+
+.topnav a {
+  float: left;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+.topnav a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+.topnav a.active {
+  background-color: #04AA6D;
+  color: white;
+}
+
+.form-control{
+  text-align:center;
+}
+.fieldWrapper{
+    display:flex;
+  flex-direction: column;
+  width: 100%; height:100%;
+  justify-content: center;
+  align-items: center;
+}
+
+
+table {
+  width:75%; 
+  font-size: 25px;
+  margin: auto;
+}
+
+th{
+  text-align:center;
+  padding: 30px;
+}
+
+td{
+  text-align:center;
+  padding: 30px;
+}
+tr{
+  text-align:center;
+}
+form{
+padding:30px;
+margin:10px 0;    
+text-align:center;
+border: 4px darkgray groove;
+width:500px;
+box-shadow:  5px 5px  black;
+border-radius:10% 10% 5% 5%;
+}
+
+select {
+  width:300px; 
+  height:100%; 
+  font-size:17px; 
+  margin-bottom:30px;
+}
+
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+</head>
+<body>
+
+
+
+<center>
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid" style="font-size:29px; text-align:center">
+
+    <ul class="nav navbar-nav">
+      <li class="dropdown">
+        <a class="nav-item nav-link" class="dropdown-toggle" data-toggle="dropdown" href="#" style="width:100%">მძღოლები და საბუთები
+        <span class="caret"></span></a>
+          <ul class="dropdown-menu"  style="width:100%; font-size:23px">
+              <li style="width:100%"><a href="{% url  'driverdocs:dr_list'    %}">მძღოლების სია</a></li>
+              <li style="width:100%"><a href="{% url  'driverdocs:dr_new'    %}">მძღოლის დამატება</a></li>
+              <li style="width:100%"><a href="{% url  'driverdocs:docs_new'   %}">საბუთების დამატება</a></li>
+          </ul>
+
+      </li>
+        <li class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#" style="width:100%">მანქანები და დოკუმენტები
+        <span class="caret"></span></a>
+          <ul class="dropdown-menu" style="width:100%; font-size:23px">
+              <li><a href="{% url  'cardocs:car_list'    %}">მანქანების სია</a></li>
+              <li><a href="{% url  'cardocs:car_new'    %}">მანქანის დამატება</a></li>
+              <li><a href="{% url  'cardocs:docs_new'   %}">მანქანის დოკუმენტის დამატება</a></li>
+              <li><a href="{% url  'cardocs:trailer_list'    %}">ტრაილერების სია</a></li>
+              <li><a href="{% url  'cardocs:trailer_new'    %}">ტრაილერების დამატება</a></li>
+              <li><a href="{% url  'cardocs:trailer_docs_new'   %}">ტრაილერის დოკუმენტის დამატება</a></li>
+        </ul>
+
+      </li>
+
+      <li class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#" style="width:100%">მომხმარებლები 
+        <span class="caret"></span></a>
+          <ul class="dropdown-menu" style="width:115%; font-size:23px">
+              <li><a href="{% url  'users:u_list'    %}">მომხმარებლების სია</a></li>
+              <li><a>მომხმარებლის დამატება</a></li>
+              <li><a href="{% url  'users:u_view' pk=request.user.pk   %}">ჩემი გვერდი</a></li>
+              
+        </ul>
+
+      </li>
+<li class="dropdown">
+        
+       <button style="border-radius: 30px; background-color:lightgray; margin-left:140px; "><a href="logout_u">გასვლა</a></button>
+      </li>
+    
+    </ul>
+  </div>
+</nav>
+
+</center>
+
+
+{% block header %}
+{% endblock %}
+
+{% block car_details %}
+{% endblock %}
+
+{% block add_car %}
+{% endblock %}
+
+{% block add_cardocs %}
+{% endblock %}
+
+{% block update_cardocs %}
+{% endblock %}
+
+{% block add_trailer %}
+{% endblock %}
+
+{% block add_trailerdocs %}
+{% endblock %}
+
+{% block trailer_details %}
+{% endblock %}
+
+{% block update_trailerdocs %}
+{% endblock %}
+
+{% block table %}
+{% endblock %}
+
+
+
+
+
+
+
+
+</body>
+</html>
